@@ -62,6 +62,22 @@ void dbs_check_cpu(struct dbs_data *dbs_data, int cpu)
 		sampling_rate = od_tuners->sampling_rate;
 		sampling_rate *= od_dbs_info->rate_mult;
 
+<<<<<<< HEAD
+=======
+	if (dbs_data->cdata->governor == GOV_ONDEMAND) {
+		struct od_cpu_dbs_info_s *od_dbs_info =
+				dbs_data->cdata->get_cpu_dbs_info_s(cpu);
+
+		/*
+		 * Sometimes, the ondemand governor uses an additional
+		 * multiplier to give long delays. So apply this multiplier to
+		 * the 'sampling_rate', so as to keep the wake-up-from-idle
+		 * detection logic a bit conservative.
+		 */
+		sampling_rate = od_tuners->sampling_rate;
+		sampling_rate *= od_dbs_info->rate_mult;
+
+>>>>>>> a547133... cpufreq: governor: Be friendly towards latency-sensitive bursty workloads
 		ignore_nice = od_tuners->ignore_nice_load;
 	} else {
 		sampling_rate = cs_tuners->sampling_rate;
@@ -120,6 +136,7 @@ void dbs_check_cpu(struct dbs_data *dbs_data, int cpu)
 			continue;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_HUAWEI_MSG_POLICY
 		now_msg_timestamp = kcpustat_cpu(j).cpustat[CPUTIME_MESSAGE];
 		active_time = (unsigned int)adjust_active_time_by_msg(j, (wall_time - idle_time),
@@ -130,6 +147,8 @@ void dbs_check_cpu(struct dbs_data *dbs_data, int cpu)
 		load = 100 * (wall_time - idle_time) / wall_time;
 #endif
 =======
+=======
+>>>>>>> a547133... cpufreq: governor: Be friendly towards latency-sensitive bursty workloads
 		/*
 		 * If the CPU had gone completely idle, and a task just woke up
 		 * on this CPU now, it would be unfair to calculate 'load' the
@@ -160,6 +179,9 @@ void dbs_check_cpu(struct dbs_data *dbs_data, int cpu)
 			j_cdbs->prev_load = load;
 			j_cdbs->copy_prev_load = true;
 		}
+<<<<<<< HEAD
+>>>>>>> a547133... cpufreq: governor: Be friendly towards latency-sensitive bursty workloads
+=======
 >>>>>>> a547133... cpufreq: governor: Be friendly towards latency-sensitive bursty workloads
 
 		if (load > max_load)
