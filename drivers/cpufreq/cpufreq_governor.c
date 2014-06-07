@@ -55,6 +55,7 @@ void dbs_check_cpu(struct dbs_data *dbs_data, int cpu)
 		sampling_rate *= od_dbs_info->rate_mult;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 	if (dbs_data->cdata->governor == GOV_ONDEMAND) {
 		struct od_cpu_dbs_info_s *od_dbs_info =
@@ -69,6 +70,8 @@ void dbs_check_cpu(struct dbs_data *dbs_data, int cpu)
 		sampling_rate = od_tuners->sampling_rate;
 		sampling_rate *= od_dbs_info->rate_mult;
 
+>>>>>>> a547133... cpufreq: governor: Be friendly towards latency-sensitive bursty workloads
+=======
 >>>>>>> a547133... cpufreq: governor: Be friendly towards latency-sensitive bursty workloads
 		ignore_nice = od_tuners->ignore_nice_load;
 	} else {
@@ -130,6 +133,7 @@ void dbs_check_cpu(struct dbs_data *dbs_data, int cpu)
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_HUAWEI_MSG_POLICY
 		now_msg_timestamp = kcpustat_cpu(j).cpustat[CPUTIME_MESSAGE];
 		active_time = (unsigned int)adjust_active_time_by_msg(j, (wall_time - idle_time),
@@ -140,6 +144,8 @@ void dbs_check_cpu(struct dbs_data *dbs_data, int cpu)
 		load = 100 * (wall_time - idle_time) / wall_time;
 #endif
 =======
+=======
+>>>>>>> a547133... cpufreq: governor: Be friendly towards latency-sensitive bursty workloads
 =======
 >>>>>>> a547133... cpufreq: governor: Be friendly towards latency-sensitive bursty workloads
 		/*
@@ -173,12 +179,15 @@ void dbs_check_cpu(struct dbs_data *dbs_data, int cpu)
 			j_cdbs->copy_prev_load = true;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> a547133... cpufreq: governor: Be friendly towards latency-sensitive bursty workloads
 =======
 >>>>>>> a547133... cpufreq: governor: Be friendly towards latency-sensitive bursty workloads
 =======
 		load = 100 * (wall_time - idle_time) / wall_time;
 >>>>>>> b9d0a68... cpufreq: get rif of huawei crap
+=======
+>>>>>>> a547133... cpufreq: governor: Be friendly towards latency-sensitive bursty workloads
 
 		if (load > max_load)
 			max_load = load;
