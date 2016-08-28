@@ -17,7 +17,11 @@ KERNEL_DIR=~/kernel/kiwi
 IMAGE=$KERNEL_DIR/arch/arm64/boot/Image
 #IMAGE=$KERNEL_DIR/arch/arm/boot/zImage for 32 bit architecture
 DTBTOOL=$KERNEL_DIR/scripts/dtbTool
+<<<<<<< HEAD
 TOOLCHAIN=$ANDROID_DIR/toolchains2/aarch64-linux-android-4.9/aarch64-linux-android/bin
+=======
+TOOLCHAIN=$ANDROID_DIR/toolchain/cm13/bin
+>>>>>>> b720f4c... build: Update toolchain path
 
 #Paths
 OUT_DIR=$KERNEL_DIR/out
