@@ -12,6 +12,7 @@ blue='\033[0;34m'
 default='\033[0m'
 
 # Resources
+<<<<<<< HEAD
 ANDROID_DIR=~/kernel
 KERNEL_DIR=~/kernel/kiwi
 IMAGE=$KERNEL_DIR/arch/arm64/boot/Image
@@ -22,6 +23,14 @@ TOOLCHAIN=$ANDROID_DIR/toolchains2/aarch64-linux-android-4.9/aarch64-linux-andro
 =======
 TOOLCHAIN=$ANDROID_DIR/toolchain/cm13/bin
 >>>>>>> b720f4c... build: Update toolchain path
+=======
+ANDROID_DIR=~/android
+KERNEL_DIR=$PWD
+IMAGE=$KERNEL_DIR/arch/arm64/boot/Image
+#IMAGE=$KERNEL_DIR/arch/arm/boot/zImage for 32 bit architecture
+DTBTOOL=$KERNEL_DIR/scripts/dtbTool
+TOOLCHAIN=$ANDROID_DIR/toolchains/aarch64-linux-android/bin
+>>>>>>> 63f9ca8... build: adaptations for new setup
 
 #Paths
 OUT_DIR=$KERNEL_DIR/out
@@ -41,7 +50,7 @@ export LOCALVERSION=~`echo $BLAZE_VER`
 export CROSS_COMPILE=$TOOLCHAIN/aarch64-linux-android-
 export ARCH=arm64
 export KBUILD_BUILD_USER="GuneetAtwal"
-export KBUILD_BUILD_HOST="BeastPC"
+export KBUILD_BUILD_HOST="LegacyServer"
 
 function make_blaze {
 		echo -e "$green*******************************************************"
@@ -50,7 +59,7 @@ function make_blaze {
 		echo
 		make $DEFCONFIG
 		make menuconfig
-		make -j5
+		make -j9
 		rm -rf $NEWOUT/Image
 		cp -vr $IMAGE $NEW_OUT
 		make_dtb
@@ -73,7 +82,7 @@ function make_recompile {
 			echo -e "$cyan*******************************************************"
 			echo "             Recompiling $BLAZE_VER	              "
 			echo -e "*****************************************************"
-			make -j5
+			make -j8
 			rm -rf $NEWOUT/Image
 			cp -vr $IMAGE $NEW_OUT
 			make_dtb
