@@ -22,10 +22,6 @@
 
 #include "cpufreq_governor.h"
 
-#ifdef CONFIG_HUAWEI_MSG_POLICY
-#include <power/msgnotify.h>
-#endif
-
 static struct attribute_group *get_sysfs_attr(struct dbs_data *dbs_data)
 {
 	if (have_governor_per_policy())
@@ -44,10 +40,6 @@ void dbs_check_cpu(struct dbs_data *dbs_data, int cpu)
 	unsigned int max_load = 0;
 	unsigned int ignore_nice;
 	unsigned int j;
-#ifdef CONFIG_HUAWEI_MSG_POLICY
-	u64 now_msg_timestamp;
-	unsigned int active_time;
-#endif
 
 	if (dbs_data->cdata->governor == GOV_ONDEMAND) {
 		struct od_cpu_dbs_info_s *od_dbs_info =
@@ -137,6 +129,7 @@ void dbs_check_cpu(struct dbs_data *dbs_data, int cpu)
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef CONFIG_HUAWEI_MSG_POLICY
 		now_msg_timestamp = kcpustat_cpu(j).cpustat[CPUTIME_MESSAGE];
 		active_time = (unsigned int)adjust_active_time_by_msg(j, (wall_time - idle_time),
@@ -183,6 +176,9 @@ void dbs_check_cpu(struct dbs_data *dbs_data, int cpu)
 >>>>>>> a547133... cpufreq: governor: Be friendly towards latency-sensitive bursty workloads
 =======
 >>>>>>> a547133... cpufreq: governor: Be friendly towards latency-sensitive bursty workloads
+=======
+		load = 100 * (wall_time - idle_time) / wall_time;
+>>>>>>> b9d0a68... cpufreq: get rif of huawei crap
 
 		if (load > max_load)
 			max_load = load;
@@ -416,10 +412,6 @@ int cpufreq_governor_dbs(struct cpufreq_policy *policy,
 			if (ignore_nice)
 				j_cdbs->prev_cpu_nice =
 					kcpustat_cpu(j).cpustat[CPUTIME_NICE];
-#ifdef CONFIG_HUAWEI_MSG_POLICY
-			j_cdbs->cputime_msg_timestamp =
-				kcpustat_cpu(cpu).cpustat[CPUTIME_MESSAGE];
-#endif
 
 			mutex_init(&j_cdbs->timer_mutex);
 			INIT_DEFERRABLE_WORK(&j_cdbs->work,
