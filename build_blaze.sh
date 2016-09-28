@@ -42,8 +42,8 @@ OUT_ZIP=$KERNEL_DIR/Blaze-Releases
 NEW_OUT=$OUT_DIR/tools
 
 # Kernel Version Info
-BASE="-Blaze™Kernel"
-CUR_VER="-2"
+BASE="-Blaze™"
+CUR_VER="-3"
 BLAZE_VER="$BASE$CUR_VER"
  
 
@@ -54,7 +54,7 @@ export LOCALVERSION=~`echo $BLAZE_VER`
 export CROSS_COMPILE=$TOOLCHAIN/aarch64-linux-android-
 export ARCH=arm64
 export KBUILD_BUILD_USER="GuneetAtwal"
-export KBUILD_BUILD_HOST="LegacyServer"
+export KBUILD_BUILD_HOST="kiwi"
 
 function make_blaze {
 		echo -e "$green*******************************************************"
