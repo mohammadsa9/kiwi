@@ -12,29 +12,12 @@ blue='\033[0;34m'
 default='\033[0m'
 
 # Resources
-<<<<<<< HEAD
-ANDROID_DIR=~/kernel
-KERNEL_DIR=~/kernel/kiwi
-IMAGE=$KERNEL_DIR/arch/arm64/boot/Image
-#IMAGE=$KERNEL_DIR/arch/arm/boot/zImage for 32 bit architecture
-DTBTOOL=$KERNEL_DIR/scripts/dtbTool
-<<<<<<< HEAD
-TOOLCHAIN=$ANDROID_DIR/toolchains2/aarch64-linux-android-4.9/aarch64-linux-android/bin
-=======
-TOOLCHAIN=$ANDROID_DIR/toolchain/cm13/bin
->>>>>>> b720f4c... build: Update toolchain path
-=======
 ANDROID_DIR=~/android
 KERNEL_DIR=$PWD
 IMAGE=$KERNEL_DIR/arch/arm64/boot/Image
 #IMAGE=$KERNEL_DIR/arch/arm/boot/zImage for 32 bit architecture
 DTBTOOL=$KERNEL_DIR/scripts/dtbTool
-<<<<<<< HEAD
-TOOLCHAIN=$ANDROID_DIR/toolchains/aarch64-linux-android/bin
->>>>>>> 63f9ca8... build: adaptations for new setup
-=======
 TOOLCHAIN=$ANDROID_DIR/toolchains/aarch64-linux-android-4.9/bin
->>>>>>> 33bb715... build: update toolchain path
 
 #Paths
 OUT_DIR=$KERNEL_DIR/out
