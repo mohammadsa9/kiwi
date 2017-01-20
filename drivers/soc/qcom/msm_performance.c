@@ -161,9 +161,7 @@ static const struct kernel_param_ops param_ops_max_cpus = {
 	.get = get_max_cpus,
 };
 
-#ifdef CONFIG_MSM_PERFORMANCE_HOTPLUG_ON
 device_param_cb(max_cpus, &param_ops_max_cpus, NULL, 0644);
-#endif
 
 static int set_managed_cpus(const char *buf, const struct kernel_param *kp)
 {
@@ -246,11 +244,9 @@ static int get_managed_online_cpus(char *buf, const struct kernel_param *kp)
 static const struct kernel_param_ops param_ops_managed_online_cpus = {
 	.get = get_managed_online_cpus,
 };
-
-#ifdef CONFIG_MSM_PERFORMANCE_HOTPLUG_ON
 device_param_cb(managed_online_cpus, &param_ops_managed_online_cpus,
-							NULL, 0444);
-#endif
+								NULL, 0444);
+
 /*
  * Userspace sends cpu#:min_freq_value to vote for min_freq_value as the new
  * scaling_min. To withdraw its vote it needs to enter cpu#:0
@@ -465,7 +461,7 @@ static void __ref try_hotplug(struct cpu_hp *data)
 	unsigned int i;
 
 	if (!clusters_inited)
-		return;
+			return;
 
 	pr_debug("msm_perf: Trying hotplug...%d:%d\n",
 			num_online_managed(data->cpus),	num_online_cpus());
@@ -553,8 +549,6 @@ static int __ref msm_performance_cpu_callback(struct notifier_block *nfb,
 		return NOTIFY_OK;
 
 	for (i = 0; i < num_clusters; i++) {
-		if (managed_clusters[i]->cpus == NULL)
-			return NOTIFY_OK;
 		if (cpumask_test_cpu(cpu, managed_clusters[i]->cpus)) {
 			i_hp = managed_clusters[i];
 			break;
@@ -569,8 +563,6 @@ static int __ref msm_performance_cpu_callback(struct notifier_block *nfb,
 		 * Prevent onlining of a managed CPU if max_cpu criteria is
 		 * already satisfied
 		 */
-		if (i_hp->offlined_cpus == NULL)
-			return NOTIFY_OK;
 		if (i_hp->max_cpu_request <=
 					num_online_managed(i_hp->cpus)) {
 			pr_debug("msm_perf: Prevent CPU%d onlining\n", cpu);
@@ -580,8 +572,6 @@ static int __ref msm_performance_cpu_callback(struct notifier_block *nfb,
 		cpumask_clear_cpu(cpu, i_hp->offlined_cpus);
 
 	} else if (action == CPU_DEAD) {
-		if (i_hp->offlined_cpus == NULL)
-			return NOTIFY_OK;
 		if (cpumask_test_cpu(cpu, i_hp->offlined_cpus))
 			return NOTIFY_OK;
 		/*
