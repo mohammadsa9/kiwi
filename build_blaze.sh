@@ -12,12 +12,12 @@ blue='\033[0;34m'
 default='\033[0m'
 
 # Resources
-ANDROID_DIR=/home/mo/kernel
-KERNEL_DIR=$PWD
+ANDROID_DIR=~/kernel
+KERNEL_DIR=~/kernel/kiwi
 IMAGE=$KERNEL_DIR/arch/arm64/boot/Image
 #IMAGE=$KERNEL_DIR/arch/arm/boot/zImage for 32 bit architecture
 DTBTOOL=$KERNEL_DIR/scripts/dtbTool
-TOOLCHAIN=$ANDROID_DIR/toolchain/aarch64-linux-android-4.9/bin
+TOOLCHAIN=$ANDROID_DIR/toolchains2/aarch64-linux-android-4.9/aarch64-linux-android/bin
 
 #Paths
 OUT_DIR=$KERNEL_DIR/out
